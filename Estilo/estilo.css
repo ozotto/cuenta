@@ -1,0 +1,133 @@
+<style type="text/css">
+	body {
+		font-family: Helvetica;
+		font-size: 11px;
+		color: #000;
+	}
+	
+	h3 {
+		margin: 0px;
+		padding: 0px;	
+	}
+
+	.suggestionsBox {
+		position: relative;
+		left: 30px;
+		margin: 10px 0px 0px 0px;
+		width: 200px;
+		background-color: #212427;
+		-moz-border-radius: 7px;
+		-webkit-border-radius: 7px;
+		border: 2px solid #000;	
+		color: #fff;
+	}
+	.suggestionList {
+		margin: 0px;
+		padding: 0px;
+	}
+	
+	.suggestionList li {
+		
+		margin: 0px 0px 3px 0px;
+		padding: 3px;
+		cursor: pointer;
+	}
+	
+	.suggestionList li:hover {
+		background-color: #659CD8;
+	}
+
+.Estilo1 {
+	font-size: 12px;
+	font-family: Tahoma;
+}
+.Estilo2 {
+	font-size: 24px;
+	color: #0000FF;
+	font-weight: bold;
+}
+.Estilo4 {
+	font-size: 12px;
+	color: #0000FF;
+	font-weight: bold;
+}
+.Estilo5{
+	font-size: 12px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.Estilo6 {
+	font-size: 12px;
+	font-weight: bold;
+}
+.Estilo7 {font-size: 12px}
+.Estilo8 {
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+	font-size: 16px;
+}
+.Estilo9 {
+	font-size: 16px;
+	font-family: "Times New Roman", Times, serif;
+}
+.Estilo10 {
+	font-size: 36px;
+	font-weight: bold;
+}
+.Estilo11 {
+	font-size: 24px;
+	font-weight: bold;
+	color: #FF0000;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+}
+.Estilo12 {font-family: "Times New Roman", Times, serif; font-weight: bold; font-size: 16px; color: #FF0000; }
+.Estilo13 {font-size: 12px; font-weight: bold; color: #FFFFFF; }
+.Estilo14 {color: #FF0000}
+.Estilo15 {font-family: "Times New Roman", Times, serif; font-weight: bold; font-size: 14px; color: #FF0000; }
+
+.tit_peq {
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.celda{
+   background-color:#FFFFFF;
+   
+}
+.celda:hover{
+   background-color:#cccccc;
+   font-family: "Times New Roman", Times, serif;
+   font-weight: bold;
+   font-size: 16px;
+}
+
+
+.celda2{
+   background-color:#FFFFFF;
+   
+}
+.celda2:hover{
+   background-color:#cccccc;
+   font-family: "Times New Roman", Times, serif;
+   font-weight: bold;
+   font-size: 16px;
+}
+
+.menu_principal
+{
+	font-size:10px;
+    font-family:Verdana,Helvetica;
+    font-weight:bold;
+    color:white;
+    background:#638cb5;
+    border:0px;
+    width:120px;
+    height:19px;
+}
+/*.Estilo6 {
+	text-align: right;
+} 	
+*/
+</style>
+
