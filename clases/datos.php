@@ -1,9 +1,12 @@
-<?
+<?php
 //-Sesion 
 	error_reporting(NULL);
-	session_start();
+	if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 	
-	include ("/control.php");	
+	require_once("control.php");		
 	$con = new control;
 	$con->conectar(); 
 	$conexion = $con->conectar();	

@@ -1,4 +1,4 @@
-<? //clase para el control del sitio
+<?php //clase para el control del sitio
 class control{
 	
 	// variables publicas-----------------------------------------------------------------

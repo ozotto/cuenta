@@ -1,11 +1,15 @@
 <?php
-	session_start();	
+	if(!isset($_SESSION)) 
+  { 
+        session_start(); 
+  } 
+	
 	//Llamado de Clases
-	include ("../clases/control.php");
-	include ("../clases/consultar.php");
-	include ("../clases/insertar.php");
-	include ("../clases/datos.php");
-	include ("../clases/diseno.php");
+	require_once ("../clases/control.php");
+	require_once ("../clases/consultar.php");
+	require_once ("../clases/insertar.php");
+	require_once ("../clases/datos.php");
+	require_once ("../clases/diseno.php");
 	
 	//Creacion de Objeto
 	$con = new control;

@@ -1,4 +1,4 @@
-<?
+<?php
 //-Sesion 
 	session_start();
 	require_once ('control.php');
