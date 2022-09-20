@@ -336,6 +336,42 @@ if($_GET['crea'] == "OK")
         <td><span class="Estilo12">$ <? echo $tot_venta;?></span></td>
       </tr>
     </table>
+
+    <? //tabla, Nueva lista para ver el total de ventas por dia?>
+    <br>
+    <table width="0" border="1">
+      <tr>
+        <td colspan="2"><div align="center"><span class="Estilo6">TOTAL POR DIA </span></div></td>       
+      </tr>
+      <?
+		if ($ven_pen>0){
+		?>
+      <tr>
+        <td width="150"><span class="Estilo6">Fecha</span></td>
+        <td width="150"><span class="Estilo6">Total</span></td>
+      </tr>
+	<?
+			$i=1;
+			$cant="SELECT fecha_factura, sum(vr_total) as 'total' FROM temporal GROUP BY fecha_factura ORDER BY fecha_factura DESC";
+			$cant2=@mysql_query($cant,$conexion);
+			
+			while ($cant3=@mysql_fetch_object($cant2)){
+			 
+			 $fec_fac = $cant3->fecha_factura;
+			 $tot_fac = number_format($cant3->total, 2, ",", ".");
+			 	
+		?>
+      <tr>
+        <td><span class="Estilo7"><? echo $fec_fac;?></span></td>
+        <td><span class="Estilo7">$ <? echo $tot_fac;?></span></td>
+      </tr>
+      <? 
+			$i++;
+			}
+		}
+		?>
+    </table>
+
 	</td>
     <td width="400" valign="top">
 	<? //tabla 3.2, Tabla Ultimas Ventas?>
