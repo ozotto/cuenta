@@ -297,6 +297,12 @@
 		document.form1.action="facturacion.php";
 		document.form1.submit();
 	}
+	function menu_facturas()
+	{
+		document.form1.men_facturas.value="OK";
+		document.form1.action="facturation_total.php";
+		document.form1.submit();
+	}
 	function menu_ce_sesion()
 	{
 		document.form1.men_ce_sesion.value="OK";

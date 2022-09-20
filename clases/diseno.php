@@ -306,6 +306,18 @@
 			$oculto  = "<input name='nueva_fac' type='hidden' id='nueva_fac'/>";
 			$oculto1 = "<input name='continua_fac' type='hidden' id='continua_fac'/>";
 		}
+		if($cod_envia == 11){	//Pagina Facturacion Total
+			$nom_boton1 	= "Menu Principal";
+			
+			$var_oculto1	= "menu_admin";
+			
+			$boton 	= "<input type=button value='$nom_boton1' onClick='menu_inicio();'/>" ;
+			$oculto  = "<input name='$var_oculto1' 		type='hidden' id='$var_oculto1'/>";
+		
+
+		}
+
+
 		
 		$menu_proveedor = "
 		<table width=$ancho_tabla border=$Borde0>
@@ -362,7 +374,8 @@
 		$boton5 = "<input type=button value='Clientes' 		onClick='menu_cliente();'		class='menu_principal' />" ;
 		$boton6 = "<input type=button value='Proveedores' 	onClick='menu_proveedor();'		class='menu_principal' />" ;
 		$boton7 = "<input type=button value='Departamentos' onClick='menu_departa();'		class='menu_principal' />" ;
-		$boton8 = "<input type=button value='Facturacion' 	onClick='menu_factura();'		class='menu_principal' />" ;
+		$boton8 = "<input type=button value='Facturacion del dia' 	onClick='menu_factura();'		class='menu_principal' />" ;
+		$boton8_1 = "<input type=button value='Facturacion' 	onClick='menu_facturas();'		class='menu_principal' />" ;
 		$boton9 = "<input type=button value='Cerrar Sesion'	onClick='menu_ce_sesion();'		class='menu_principal' />" ;
 	
 		$c_oculto  = "<input name='menu_admin' 		type='hidden' id='menu_admin'/>";
@@ -375,6 +388,7 @@
 		$c_oculto6 = "<input name='men_proveedor' 	type='hidden' id='men_proveedor'/>";
 		$c_oculto7 = "<input name='men_departa' 	type='hidden' id='men_departa'/>";
 		$c_oculto8 = "<input name='men_factura' 	type='hidden' id='men_factura'/>";
+		$c_oculto8_1 = "<input name='men_facturas' 	type='hidden' id='men_facturas'/>";
 		$c_oculto9 = "<input name='men_ce_sesion' 	type='hidden' id='men_ce_sesion'/>";
 
 		$tabla .="
@@ -402,6 +416,9 @@
 			</tr>
 			<tr>
 			 <td>$boton7 $c_oculto7</td>
+			</tr>
+			<tr>
+			 <td>$boton8_1 $c_oculto8_1</td>
 			</tr>
 			<tr>
 			 <td>$boton8 $c_oculto8</td>

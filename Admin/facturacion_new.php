@@ -12,7 +12,8 @@
 	
 	if($_POST['op2'] == "OK") // Cerrar el dia
 	{
-		$fac="select * from temporal where fecha_factura ='$fecha'";
+		$fecha_select = $_SESSION["fecha_select"];
+		$fac="select * from temporal where fecha_factura ='$fecha_select'";
 		$fac2=@mysql_query($fac,$conexion);
 		while($fac3=@mysql_fetch_object($fac2)){
 		$cod_item 	= $fac3->id_art;
@@ -44,11 +45,11 @@
 		
 		}
 		
-		$nfa = "select distinct num_factura from temporal where fecha_factura ='$fecha'";
+		$nfa = "select distinct num_factura from temporal where fecha_factura ='$fecha_select'";
 		$nfa2 = mysql_query($nfa,$conexion); 	
 		while($nfa3=@mysql_fetch_object($nfa2)){
 			$no_fac = $nfa3->num_factura;
-			$sum  = "select sum(vr_total) total from temporal where num_factura = '$no_fac' and fecha_factura ='$fecha'";
+			$sum  = "select sum(vr_total) total from temporal where num_factura = '$no_fac' and fecha_factura ='$fecha_select'";
 			$sum2 = @mysql_query($sum,$con->conectar()); 
 			$sum3 = @mysql_fetch_object($sum2);	
 			$t_fac = $sum3->total;
@@ -57,32 +58,31 @@
 			insert into facturacion (
 			id_fac, no_fac, fecha_fac, vr_fac, cod_cli)
 			VALUES (
-			NULL,  '$no_fac',  '$fecha',  '$t_fac',  '$cod_cli');
+			NULL,  '$no_fac',  '$fecha_select',  '$t_fac',  '$cod_cli');
 			";
 			$ins2=mysql_query($ins,$conexion);
 		}	
 		
-		$sql="delete from temporal where fecha_factura ='$fecha'";
+		$sql="delete from temporal where fecha_factura ='$fecha_select'";
 		$bor=@mysql_query($sql,$conexion);
 		$bor1 = @mysql_fetch_object($bor);		
 		echo("<script language=javascript> 
-		alert('El $dia de $mes de $ano cerro su facturación');
+		alert('El $fecha_select cerro su facturación');
 		</script>");
 		echo '<script type="text/javascript">';
 		echo 'location.href="administrar.php"';
 		echo '</script>';	
 	}	
 
-  	$sqln = "select * from temporal where fecha_factura ='$fecha'";
-	$nro = $con -> busca_campo($sqln,$conexion);
+  	$sqln = "SELECT DISTINCT fecha_factura FROM temporal ORDER BY fecha_factura asc";
+	$nro = mysql_query($sqln,$conexion);
 	if($nro != 0)
 	{
-		$fac = "select distinct num_factura from temporal where fecha_factura ='$fecha' order by num_factura asc";
-		$fac2 = mysql_query($fac,$conexion); 			
+		
 ?>
 <html>
 <head>
-<title>Facturacion</title>
+<title>Facturacion del dia</title>
 <link href="../Estilo/estilo.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <script language="javascript">
@@ -137,10 +137,31 @@ function valida()
                 <td>&nbsp;</td>
               </tr>
               <tr>
-                <td><span class="Estilo6">FECHA</span></td>
-                <td><span class="Estilo7"><? echo $mes." ".$dia." de ".$ano; ?></span></td>
+                <td><span class="Estilo6">SELECCIONE UNA FECHA</span></td>
+                <td>
+                	<select name="sel_date" id="sel_date" onChange="document.form1.sel_date.selectedindex=0;document.form1.submit();">
+	                  <option> Seleccione</option>
+	                  <? 
+						while($campo_d = mysql_fetch_object($nro)){
+					  ?>
+	                  <option value="<? echo $campo_d->fecha_factura;?>"<? if($i==$_POST['sel_date']) echo ("selected"); ?>> 
+					  <? echo $campo_d->fecha_factura;?> </option>
+	                  <? } ?>
+	                </select>
+                	<!-- <span class="Estilo7"><? echo $mes." ".$dia." de ".$ano; ?></span> -->
+                </td>
                 <td>&nbsp;</td>
               </tr>
+              <?php
+			  if (isset($_POST['sel_date'])){
+			  	$fecha_select=$_POST['sel_date'];
+			  	$_SESSION["fecha_select"]=$fecha_select;
+
+			  	$fac = "select distinct num_factura from temporal where fecha_factura ='$fecha_select' order by num_factura asc";
+				$fac2 = mysql_query($fac,$conexion); 	
+				  
+			  ?>
+
               <tr>
                 <td><span class="Estilo6">No. FACTURA </span></td>
                 <td>
@@ -149,31 +170,42 @@ function valida()
                   <? 
 					while($campo = mysql_fetch_object($fac2)){
 				  ?>
-                  <option value="<? echo $campo->num_factura;?>"<? if($i==$_POST['can']) echo ("selected"); ?>> 
+                  <option value="<? echo $campo->num_factura;?>|<? echo $fecha_select;?>"<? if($i==$_POST['can']) echo ("selected"); ?>> 
 				  <? echo $campo->num_factura;?> </option>
                   <? } ?>
                 </select></td>
-                <td><span class="Estilo6">VALOR TOTAL EN CAJA </span></td>
+                <td><span class="Estilo6">VALOR TOTAL EN CAJA : <? echo $_SESSION["fecha_select"];?> </span></td>
+                <td>
+                	<input name='fecha_select' type='text' id='fecha_select' readonly>
+                </td>
+		
               </tr>
               <tr>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
 				<?
-				   	$sum = "select sum(vr_total) total from temporal where fecha_factura ='$fecha'";
+				   	$sum = "select sum(vr_total) total from temporal where fecha_factura ='$fecha_select'";
 					$sum2 = @mysql_query($sum,$conexion); 
 					$sum3 = @mysql_fetch_object($sum2);		     
 				?>
                 <td><table width="189" border="1" bordercolor="#FF0000">
                   <tr>
-                    <td><div align="center"><span class="Estilo11">$ <? echo $sum3->total;?></span></div></td>
+                    <td><div align="center"><span class="Estilo11">$ <? echo number_format($sum3->total, 0, ",", ".");?></span></div></td>
                   </tr>
                 </table></td>
               </tr>
 			  <?php
 			  if (isset($_POST['can'])){
-			  $num_factura=$_POST['can'];	
-			  
-			  $consulta = "select * from temporal where num_factura = '$num_factura' and fecha_factura ='$fecha'";
+			  	$result = $_POST['can'];
+	            $result_explode = explode('|', $result);
+	            $num_factura = $result_explode[0];
+	            $fecha_select = $result_explode[1];
+
+
+			  // $num_factura=$_POST['can'];	
+			  // $fecha_select = $_POST['fecha_select'];
+
+			  $consulta = "select * from temporal where num_factura = '$num_factura' and fecha_factura ='$fecha_select'";
 		      $rs 	 = @mysql_query($consulta,$conexion); 
 			  $campo = @mysql_fetch_object($rs);
 			  
@@ -245,7 +277,7 @@ function valida()
 				   </a></div></td>
 			   </tr>
 			   <? }	
-			    $suma = "select sum(vr_total) total from temporal where num_factura = '$num_factura' and fecha_factura ='$fecha'";
+			    $suma = "select sum(vr_total) total from temporal where num_factura = '$num_factura' and fecha_factura ='$fecha_select'";
 				$suma2 = @mysql_query($suma,$con->conectar()); 
 				$suma3 = @mysql_fetch_object($suma2);	
 			   ?>
@@ -273,10 +305,11 @@ function valida()
 </body>
 </html>
  <?
-	}
+	} // if post can
+	} // if post sel_date
 	}else{
 		echo("<script language=javascript> 
-		alert('El $dia de $mes de $ano aun NO registra ventas para facturación');
+		alert('No existen facturas temporales');
 		</script>");
 		echo '<script type="text/javascript">';
 		echo 'location.href="administrar.php"';

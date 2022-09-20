@@ -873,6 +873,10 @@
 			$ins_default		=	$_GET['v_def'];
 		}
 	}
+
+	if($pagina_actual == 'facturacion_total'){
+
+	}		
 	
 	//Volver a la factura desde crear articulo
 	if($_POST['volver_fact'] == "OK") 
