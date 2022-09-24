@@ -1,5 +1,8 @@
 <?php
-	session_start();
+	if(!isset($_SESSION)) 
+  { 
+        session_start(); 
+  }
 	include ("../clases/control.php");
 	include ("../clases/datos.php");
 	include ("../clases/diseno.php");

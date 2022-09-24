@@ -63,51 +63,67 @@
 	$pagina_proveedor 	= 'proveedor';
 	
 	//Nombre de pagina actual
-	if ($url_actual	== '/achete/Admin/cliente.php' or 
-		$url_actual	== '/achete/Admin/cliente2.php')
+	if ($url_actual	== '/cuenta/Admin/cliente.php' or 
+		$url_actual	== '/cuenta/Admin/cliente2.php' or
+		$url_actual	== '/achete/Admin/cliente.php' or 
+		$url_actual	== '/achete/Admin/cliente2.php' )
 	{
 		$pagina_actual = 'cliente';
 	}
-	if ($url_actual	== '/achete/Admin/proveedor.php' or
+	if ($url_actual	== '/cuenta/Admin/proveedor.php' or
+		$url_actual	== '/cuenta/Admin/proveedor2.php' or 
+		$url_actual	== '/achete/Admin/proveedor.php' or
 		$url_actual	== '/achete/Admin/proveedor2.php')
 	{
 		$pagina_actual = 'proveedor';
 	}
-	if ($url_actual	== '/achete/Admin/ventas.php' or
-		$url_actual	== '/achete/Admin/ventas2.php')
+	if ($url_actual	== '/cuenta/Admin/ventas.php' or
+		$url_actual	== '/cuenta/Admin/ventas2.php' or 
+		$url_actual	== '/achete/Admin/ventas.php' or
+		$url_actual	== '/achete/Admin/ventas2.php' )
 	{
 		$pagina_actual = 'ventas';
 	}
-	if ($url_actual	== '/achete/Admin/compras.php' or
+	if ($url_actual	== '/cuenta/Admin/compras.php' or
+		$url_actual	== '/cuenta/Admin/compras1.php' or
+		$url_actual	== '/cuenta/Admin/compras2.php' or 
+		$url_actual	== '/achete/Admin/compras.php' or
 		$url_actual	== '/achete/Admin/compras1.php' or
-		$url_actual	== '/achete/Admin/compras2.php')
+		$url_actual	== '/achete/Admin/compras2.php' )
 	{
 		$pagina_actual = 'compras';
-		if ($url_actual	== '/achete/Admin/compras1.php'){
+		if ($url_actual	== '/cuenta/Admin/compras1.php' or 
+			$url_actual	== '/achete/Admin/compras1.php' ){
 			$valor_pagina = 1;
 		}
-		if ($url_actual	== '/achete/Admin/compras2.php'){
+		if ($url_actual	== '/cuenta/Admin/compras2.php' or 
+			$url_actual	== '/achete/Admin/compras2.php' ){
 			$valor_pagina = 2;
 		}
 
 	}
-	if ($url_actual	== '/achete/Admin/administrar.php')
+	if ($url_actual	== '/cuenta/Admin/administrar.php' or 
+		$url_actual	== '/achete/Admin/administrar.php')
 	{	
 		$pagina_actual = 'administrar';
 	}
-	if ($url_actual	== '/achete/Admin/inventario.php')
+	if ($url_actual	== '/cuenta/Admin/inventario.php' or 
+		$url_actual	== '/achete/Admin/inventario.php')
 	{
 		$pagina_actual = 'inventario';
 	}
-	if ($url_actual	== '/achete/Admin/articulo.php')
+	if ($url_actual	== '/cuenta/Admin/articulo.php' or 
+		$url_actual	== '/achete/Admin/articulo.php')
 	{
 		$pagina_actual = 'articulo';
 	}
-	if ($url_actual	== '/achete/Admin/departamento.php')
+	if ($url_actual	== '/cuenta/Admin/departamento.php' or 
+		$url_actual	== '/achete/Admin/departamento.php')
 	{
 		$pagina_actual = 'departamento';
 	}	
-	if ($url_actual	== '/achete/User/factura_user.php')
+	if ($url_actual	== '/cuenta/User/factura_user.php' or 
+		$url_actual	== '/achete/User/factura_user.php')
 	{
 		$pagina_actual = 'facturacion';
 	}	

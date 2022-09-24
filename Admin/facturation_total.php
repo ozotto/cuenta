@@ -33,7 +33,7 @@
   if($_POST['flag_cerrar'] == "OK")
 	{
 
-		$info_fact = "SELECT num_factura, fecha_factura, cod_cli, sum(vr_total) total FROM temporal GROUP BY num_factura, fecha_factura, cod_cli ORDER BY fecha_factura LIMIT 0 , 2";
+		$info_fact = "SELECT num_factura, fecha_factura, cod_cli, sum(vr_total) total FROM temporal GROUP BY num_factura, fecha_factura, cod_cli ORDER BY fecha_factura";
 		$q_fact=@mysql_query($info_fact,$conexion);
 		while($res_fact=@mysql_fetch_object($q_fact)){
 
@@ -74,9 +74,9 @@
 			}
 
 			//Actualizar la tabla facturacion
-			$ins="INSERT INTO facturacion (id_fac, no_fac, fecha_fac, vr_fac, cod_cli)
+			$ins="INSERT INTO facturacion (id_fac, no_fac, fecha_fac, fecha_registro, vr_fac, cod_cli)
 			VALUES (
-			NULL,  '$numero_factura',  '$fecha_factura',  '$total_factura',  '$cliente_factura');
+			NULL,  '$numero_factura',  '$fecha_factura', '$fecha', '$total_factura',  '$cliente_factura');
 			";
 			$ins2=mysql_query($ins,$conexion);
 
