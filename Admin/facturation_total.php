@@ -85,9 +85,6 @@
 			$bor=@mysql_query($sql,$conexion);
 			$bor1 = @mysql_fetch_object($bor);		
 
-			echo("<script language=javascript> 
-			alert('La factura $numero_factura de fecha $fecha_factura cerro su facturación con un total de $total_factura ');
-			</script>");
 		}	 
 
 		echo("<script language=javascript> 
